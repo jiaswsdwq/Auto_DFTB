@@ -1,0 +1,76 @@
+Geometry = GenFormat {
+<<< "geo.gen"
+}
+
+Driver = GeometryOptimization {  # 占位符，类型根据不同任务选择
+   Optimizer = Rational {}
+   MovedAtoms = 1:-1
+   MaxSteps = 100
+   OutputPrefix = "geom.out"
+   Convergence {GradElem = 1E-4}       # 占位符，用于指定各类Driver参数，如优化器、步长、温度等
+}
+
+
+Hamiltonian = DFTB {
+    
+    SCC = Yes
+    SccTolerance = 1e-06    # 占位符，设置SCC收敛容差
+    
+
+ MaxAngularMomentum {
+    K = "s"
+   C = "p"
+   Zn = "d"
+   H = "s"
+   O = "p"
+ }
+
+ KPointsAndWeights = {
+    0 0 0 1
+ }
+
+ SlaterKosterFiles {
+    C-C = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\C-C.skf" 
+   C-H = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\C-H.skf" 
+   C-K = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\C-K.skf" 
+   C-O = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\C-O.skf" 
+   C-Zn = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\C-Zn.skf" 
+   H-C = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\H-C.skf" 
+   H-H = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\H-H.skf" 
+   H-K = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\H-K.skf" 
+   H-O = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\H-O.skf" 
+   H-Zn = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\H-Zn.skf" 
+   K-C = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\K-C.skf" 
+   K-H = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\K-H.skf" 
+   K-K = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\K-K.skf" 
+   K-O = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\K-O.skf" 
+   K-Zn = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\K-Zn.skf" 
+   O-C = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\O-C.skf" 
+   O-H = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\O-H.skf" 
+   O-K = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\O-K.skf" 
+   O-O = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\O-O.skf" 
+   O-Zn = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\O-Zn.skf" 
+   Zn-C = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\Zn-C.skf" 
+   Zn-H = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\Zn-H.skf" 
+   Zn-K = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\Zn-K.skf" 
+   Zn-O = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\Zn-O.skf" 
+   Zn-Zn = "D:\code\mo\dftb+\slako-unpacked\slako\3ob\3ob-3-1\Zn-Zn.skf" 
+ }
+}
+Options {
+   
+}
+
+Analysis {
+  CalculateForces = Yes
+}
+
+ParserOptions {
+  ParserVersion = 12
+}
+
+Parallel {
+  # Allow OMP threads explicitely to test for hybrid parallelisation with
+  # MPI-binary. (Check the manual before using this in production runs!)
+  UseOmpThreads = Yes
+}
